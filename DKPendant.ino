@@ -1,5 +1,6 @@
 #include <Bounce2.h>
 #include <Pendant.h>
+#include <FastLED.h>
 
 Pendant pendant;
 

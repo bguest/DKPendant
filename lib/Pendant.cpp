@@ -9,6 +9,8 @@ void Pendant::init(){
 
 void Pendant::run(){
   tempoButton.run();
-  uint16_t tempo = tempoButton.tempo();
-  Serial.println(tempo);
+  bool isDouble = tempoButton.isDoubleTap();
+  if(isDouble){
+    Serial.println("DOUBLE TAP");
+  }
 }
