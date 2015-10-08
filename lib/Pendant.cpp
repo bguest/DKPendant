@@ -5,12 +5,22 @@ Pendant::Pendant(){
 
 void Pendant::init(){
   tempoButton.init();
+  effects.init();
 }
 
 void Pendant::run(){
   tempoButton.run();
-  bool isDouble = tempoButton.isDoubleTap();
-  if(isDouble){
-    Serial.println("DOUBLE TAP");
+
+  if(tempoButton.didUpdate()){
+    bool isDouble = tempoButton.isDoubleTap();
+    if(isDouble){
+#ifdef DEBUG
+      Serial.println("DOUBLE TAP");
+#endif
+    }
+    effects.setTempo(tempoButton.tempo());
   }
+
+  effects.run();
+
 }

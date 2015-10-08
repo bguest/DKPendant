@@ -6,6 +6,7 @@ Tempo::Tempo(){
   tapIdx = 0;
   _tempo = 0;
   _shouldUpdate = false;
+  _didUpdate = false;
   _isDoubleTap = false;
   tempoButton = Bounce();
 }
@@ -25,9 +26,11 @@ void Tempo::init(){
 void Tempo::run(){
 
   tempoButton.update();
+  _didUpdate = false;
 
   if(tempoButton.fell()){
     this -> recordTap();
+    _didUpdate = true;
   }
 }
 
@@ -45,6 +48,10 @@ bool Tempo::isDoubleTap(){
   bool rtn = _isDoubleTap;
   _isDoubleTap = false;
   return rtn;
+}
+
+bool Tempo::didUpdate(){
+  return _didUpdate;
 }
 
 void Tempo::runCalc(){
@@ -65,7 +72,9 @@ void Tempo::runCalc(){
     }
   }
   if(beats > 0){
+#ifdef DEBUG
     Serial.println(_tempo);
+#endif
     _shouldUpdate = false;
     _tempo = durration/beats;
   }

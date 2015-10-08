@@ -4,6 +4,7 @@
 #define LED_COUNT 4
 
 #include "FastLED.h"
+#include "Pixel.h"
 
 class Leds{
 
@@ -11,6 +12,14 @@ class Leds{
     Leds();
     void init();
     void run();
+
+    void off(); //Turn LEDs all off
+
+    void colorAtIndex(CHSV color , uint8_t idx);
+    CHSV colorAtIndex(uint8_t idx);
+    Pixel* pixelAtIndex(uint8_t idx);
+
+    Pixel pixels[LED_COUNT];
 
   private:
     CRGB leds[LED_COUNT];

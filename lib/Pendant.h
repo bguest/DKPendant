@@ -6,6 +6,7 @@
 
 #include "Arduino.h"
 #include "Tempo.h"
+#include "Effects.h"
 
 class Pendant{
   public:
@@ -15,5 +16,6 @@ class Pendant{
 
   private:
     Tempo tempoButton;
+    Effects effects;
 };
 #endif

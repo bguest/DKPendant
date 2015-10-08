@@ -13,6 +13,7 @@ class Tempo{
     void run();
     uint16_t tempo();
     bool isDoubleTap();
+    bool didUpdate();
 
   private:
     const uint16_t MAXIMUM_PERIOD = 2500;
@@ -21,9 +22,11 @@ class Tempo{
     Bounce tempoButton;
     uint8_t tapIdx;
     uint16_t tapTimes[TAP_COUNT];
+
     bool _shouldUpdate;
     uint16_t _tempo;
     bool _isDoubleTap;
+    bool _didUpdate;
 
     void recordTap();
     void runCalc();

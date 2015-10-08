@@ -6,6 +6,7 @@ Pixel::Pixel(){
   hsv16 = CHSV16(0,0,0);
 };
 
+
 void Pixel::setColor(CHSV clr){
   hsv16.hue = clr.hue << 8;
   hsv16.sat = clr.sat << 8;
