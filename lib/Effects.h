@@ -14,6 +14,7 @@ class Effects{
     void init();
     void run();
     void setTempo(uint16_t tempo);
+    void changeEffect();
 
   private:
     uint8_t cEffect;
