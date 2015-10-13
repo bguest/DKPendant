@@ -2,11 +2,14 @@
 #define EFFECTS_H
 
 #include "Arduino.h"
+#include "Sound.h"
 #include "effects/Effect.h"
 #include "effects/Spin.h"
+#include "effects/Levels.h"
 
 #define SPIN 0
-#define EFFECT_COUNT 1
+#define LEVELS 1
+#define EFFECT_COUNT 2
 
 class Effects{
   public:
@@ -14,7 +17,7 @@ class Effects{
     void init();
     void run();
     void setTempo(uint16_t tempo);
-    void setVolume(uint16_t volume, uint16_t maxVolume);
+    void setSoundInfo(Sound* sound);
     void changeEffect();
 
   private:
@@ -22,6 +25,7 @@ class Effects{
     Effect* currEffect;
 
     Spin spin;
+    Levels levels;
 
     Leds leds;
     EffectData data;

@@ -72,9 +72,6 @@ void Tempo::runCalc(){
     }
   }
   if(beats > 0){
-#ifdef DEBUG
-    Serial.println(_tempo);
-#endif
     _shouldUpdate = false;
     _tempo = durration/beats;
   }

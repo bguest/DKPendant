@@ -99,11 +99,6 @@ const prog_int8_t Sinewave[N_WAVE-N_WAVE/4] PROGMEM = {
 */
 inline char FIX_MPY(char a, char b)
 {
- 
- //Serial.println(a);
-//Serial.println(b);
- 
- 
    /* shift right one less bit (i.e. 15-1) */
    int c = ((int)a * (int)b) >> 6;
    /* last bit shifted out = rounding-bit */
@@ -199,7 +194,7 @@ int fix_fft(char fr[], char fi[], int m, int inverse)
            /* 0 <= j < N_WAVE/2 */
            wr =  pgm_read_word_near(Sinewave + j+N_WAVE/4);
 
-/*Serial.println("asdfasdf");
+/*
 Serial.println(wr);
 Serial.println(j+N_WAVE/4);
 Serial.println(Sinewave[256]);

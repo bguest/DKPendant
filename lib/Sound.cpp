@@ -3,7 +3,10 @@
 #include "fix_fft.h"
 
 Sound::Sound(){
-  maxVol = 0;
+  maxVolume = 0;
+  for(uint8_t i = 0; i < AVG_BANDS_COUNT; i++){
+    maxBandAmp[i] = 0;
+  }
 }
 
 void Sound::init(){
@@ -13,9 +16,8 @@ void Sound::init(){
 void Sound::run(){
 
   signed int val;
-  uint8_t static i;
 
-  for (i=0; i < SAMPLES_COUNT; i++){
+  for (uint8_t i=0; i < SAMPLES_COUNT; i++){
     val = analogRead(MIC_PIN);
     data[i] = val / 2 - 128;
     im[i] = 0;
@@ -25,17 +27,29 @@ void Sound::run(){
   fix_fft(data,im,7,0);
 
   // this gets the absolute value of the values in the array, so we're only dealing with positive numbers
-  for (i=0; i< 64;i++){
+  for (uint8_t i=0; i< SAMPLES_COUNT;i++){
     data[i] = sqrt(data[i] * data[i] + im[i] * im[i]);
   };
 
-  // Sum Points
-  volume = 0;
-  for(i = 0; i < SAMPLES_COUNT ; i++){
-    volume += data[i];
+
+  // Bands
+  for(uint8_t i=0; i < AVG_BANDS_COUNT; i++){
+    bandAmp[i] = 0;
+    for(uint8_t j = 0; j < BAND_WIDTH/2; j++){
+      bandAmp[i] += data[i*BAND_WIDTH/2 + j];
+    }
+    if(bandAmp[i] > maxBandAmp[i]){
+      maxBandAmp[i] = bandAmp[i];
+    }
   }
-  if(volume > maxVol){
-    maxVol = volume;
+
+  // Volume
+  volume = 0;
+  for(uint8_t i = 0; i < AVG_BANDS_COUNT ; i++){
+    volume += bandAmp[i];
+  }
+  if(volume > maxVolume){
+    maxVolume = volume;
   }
 
 

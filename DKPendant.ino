@@ -1,9 +1,8 @@
-
-#define DEBUG
 #include <Bounce2.h>
 #include <Pendant.h>
 #include <FastLED.h>
 
+#define DEBUG
 
 Pendant pendant;
 

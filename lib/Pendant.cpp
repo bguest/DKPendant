@@ -12,14 +12,12 @@ void Pendant::init(){
 void Pendant::run(){
   tempoButton.run();
   sound.run();
-  effects.setVolume(sound.volume, sound.maxVol);
+  effects.setSoundInfo(&sound);
 
   if(tempoButton.didUpdate()){
-    bool isDouble = tempoButton.isDoubleTap();
-    if(isDouble){
-#ifdef DEBUG
+    if(tempoButton.isDoubleTap()){
+      effects.changeEffect();
       Serial.println("DOUBLE TAP");
-#endif
     }
     effects.setTempo(tempoButton.tempo());
   }
