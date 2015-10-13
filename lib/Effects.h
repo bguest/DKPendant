@@ -14,6 +14,7 @@ class Effects{
     void init();
     void run();
     void setTempo(uint16_t tempo);
+    void setVolume(uint16_t volume, uint16_t maxVolume);
     void changeEffect();
 
   private:
@@ -23,6 +24,6 @@ class Effects{
     Spin spin;
 
     Leds leds;
-    uint16_t _tempo;
+    EffectData data;
 };
 #endif

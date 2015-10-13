@@ -12,14 +12,16 @@ void Effects::init(){
 }
 
 void Effects::run(){
-  EffectData data;
-  data.tempo = _tempo;
-
+  Serial.print(data.maxVolume);
   currEffect -> run(&leds, data);
   leds.run();
 }
 
+void Effects::setVolume(uint16_t volume, uint16_t maxVolume){
+  data.volume = volume;
+  data.maxVolume = maxVolume;
+}
 
 void Effects::setTempo(uint16_t aTempo){
-  _tempo = aTempo;
+  data.tempo = aTempo;
 }

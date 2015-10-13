@@ -1,5 +1,4 @@
 #include "Leds.h"
-#include "Pendant.h"
 
 Leds::Leds(){
 

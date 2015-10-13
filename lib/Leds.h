@@ -2,6 +2,7 @@
 #define LEDS_H
 
 #define LED_COUNT 4
+#define LED_PIN 3
 
 #include "FastLED.h"
 #include "Pixel.h"

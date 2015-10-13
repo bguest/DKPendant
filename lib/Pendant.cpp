@@ -6,10 +6,13 @@ Pendant::Pendant(){
 void Pendant::init(){
   tempoButton.init();
   effects.init();
+  sound.init();
 }
 
 void Pendant::run(){
   tempoButton.run();
+  sound.run();
+  effects.setVolume(sound.volume, sound.maxVol);
 
   if(tempoButton.didUpdate()){
     bool isDouble = tempoButton.isDoubleTap();

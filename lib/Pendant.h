@@ -2,10 +2,10 @@
 #define PENDANT_H
 
 #define TEMPO_BUTTON 2
-#define LED_PIN 3
 
 #include "Arduino.h"
 #include "Tempo.h"
+#include "Sound.h"
 #include "Effects.h"
 
 class Pendant{
@@ -16,6 +16,7 @@ class Pendant{
 
   private:
     Tempo tempoButton;
+    Sound sound;
     Effects effects;
 };
 #endif

@@ -1,6 +1,7 @@
+#define __PROG_TYPES_COMPAT__
 #include <avr/pgmspace.h>
 #include "fix_fft.h"
-#include <WProgram.h>
+//#include <WProgram.h>
 
 /* fix_fft.c - Fixed-point in-place Fast Fourier Transform  */
 /*
