@@ -1,6 +1,12 @@
 #ifndef TEMPO_H
 #define TEMPO_H
 
+#ifdef DEBUG
+  #define TEMPO_BUTTON 2
+#else
+  #define TEMPO_BUTTON 1
+#endif
+
 #include <Bounce2.h>
 
 const uint8_t TAP_COUNT = 8;

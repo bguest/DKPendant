@@ -3,7 +3,11 @@
 
 #include "Arduino.h"
 
-#define MIC_PIN A3
+#ifdef DEBUG
+  #define MIC_PIN A3
+#else
+  #define MIC_PIN A1
+#endif
 
 const uint8_t BANDS_COUNT = 7;
 const uint8_t SAMPLES_COUNT = 128; // 2**BANDS_COUNT

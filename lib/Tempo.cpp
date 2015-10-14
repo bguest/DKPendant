@@ -1,6 +1,5 @@
 #include "Tempo.h"
 #include "Arduino.h"
-#include "Pendant.h"
 
 Tempo::Tempo(){
   tapIdx = 0;

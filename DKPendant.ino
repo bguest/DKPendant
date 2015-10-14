@@ -2,7 +2,7 @@
 #include <Pendant.h>
 #include <FastLED.h>
 
-#define DEBUG
+//#define DEBUG
 
 Pendant pendant;
 

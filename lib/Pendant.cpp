@@ -17,7 +17,6 @@ void Pendant::run(){
   if(tempoButton.didUpdate()){
     if(tempoButton.isDoubleTap()){
       effects.changeEffect();
-      Serial.println("DOUBLE TAP");
     }
     effects.setTempo(tempoButton.tempo());
   }
