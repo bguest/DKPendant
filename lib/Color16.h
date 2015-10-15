@@ -1,4 +1,4 @@
-#ifndef COLOR_16_H
+#ifdef FOOBAR
 #define COLOR_16_H
 // Shamelessly mimiced from fastled.io
 

@@ -14,7 +14,7 @@ void Levels::run(Leds *leds, EffectData data){
   for(uint8_t i = 0; i < 4; i++){
     x = (255*data.bandAmp[i])/data.maxBandAmp[i];
     hue = green - (green - red)*x/255;
-    leds -> colorAtIndex( CHSV(hue, 255, 100), i);
+    leds -> colorAtIndex( 0x00FF00, i);
   }
 }
 

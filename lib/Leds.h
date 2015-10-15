@@ -9,7 +9,7 @@
   #define LED_PIN 0
 #endif
 
-#include "FastLED.h"
+#include "Adafruit_NeoPixel.h"
 #include "Pixel.h"
 
 class Leds{
@@ -21,14 +21,16 @@ class Leds{
 
     void off(); //Turn LEDs all off
 
-    void colorAtIndex(CHSV color , uint8_t idx);
-    CHSV colorAtIndex(uint8_t idx);
+    void colorAtIndex(uint32_t color , uint8_t idx);
+    uint32_t colorAtIndex(uint8_t idx);
     Pixel* pixelAtIndex(uint8_t idx);
 
     Pixel pixels[LED_COUNT];
 
   private:
-    CRGB leds[LED_COUNT];
+
+    Adafruit_NeoPixel strip;
+    //CRGB leds[LED_COUNT];
 
 };
 
