@@ -15,7 +15,7 @@ void Tempo::init(){
   pinMode(TEMPO_BUTTON,INPUT_PULLUP);
 
   tempoButton.attach(TEMPO_BUTTON);
-  tempoButton.interval(5);
+  tempoButton.interval(1);
   for(uint8_t idx = 0; idx < TAP_COUNT; idx++){
     tapTimes[idx] = 0;
   }

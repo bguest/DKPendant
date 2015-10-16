@@ -10,6 +10,7 @@ void Pendant::init(){
 }
 
 void Pendant::run(){
+
   tempoButton.run();
   sound.run();
   effects.setSoundInfo(&sound);
@@ -22,5 +23,4 @@ void Pendant::run(){
   }
 
   effects.run();
-
 }

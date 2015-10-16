@@ -1,13 +1,13 @@
 #ifndef LEVELS_H
 #define LEVELS_H
 
-#include "Leds.h"
+#include "Adafruit_NeoPixel.h"
 #include "EffectData.h"
 
 class Levels : public Effect{
   public:
     Levels();
-    void run(Leds *leds, EffectData data);
+    void run(Adafruit_NeoPixel *strip, EffectData data);
 };
 #endif
 

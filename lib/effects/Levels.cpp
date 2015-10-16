@@ -1,20 +1,21 @@
 #include "Levels.h"
-#include "Pixel.h"
 
 Levels::Levels(){
 }
 
-void Levels::run(Leds *leds, EffectData data){
-  uint8_t green = 128;
-  int8_t red = -10;
+void Levels::run(Adafruit_NeoPixel *strip, EffectData data){
+  uint8_t green = 0;
+  int8_t red = 128;
 
-  uint8_t x;
+  uint16_t x;
   uint8_t hue;
 
-  for(uint8_t i = 0; i < 4; i++){
+  for(uint8_t i = 0; i < LED_COUNT; i++){
     x = (255*data.bandAmp[i])/data.maxBandAmp[i];
-    hue = green - (green - red)*x/255;
-    leds -> colorAtIndex( 0x00FF00, i);
+    //hue = green - (green - red)*x/225 - 10;
+    hue = x;
+    uint32_t color = this -> wheel(hue);
+    strip -> setPixelColor(i, color);
   }
 }
 

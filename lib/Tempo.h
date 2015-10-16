@@ -1,10 +1,10 @@
 #ifndef TEMPO_H
 #define TEMPO_H
 
-#ifdef DEBUG
-  #define TEMPO_BUTTON 2
+#ifndef __AVR_ATtiny85__
+  #define TEMPO_BUTTON 3
 #else
-  #define TEMPO_BUTTON 1
+  #define TEMPO_BUTTON 3
 #endif
 
 #include <Bounce2.h>

@@ -1,13 +1,13 @@
 #ifndef SPIN_H
 #define SPIN_H
 
-#include "Leds.h"
+#include "Adafruit_NeoPixel.h"
 #include "EffectData.h"
 
 class Spin : public Effect{
   public:
     Spin();
-    void run(Leds *leds, EffectData data);
+    void run(Adafruit_NeoPixel *strip, EffectData data);
 };
 #endif
 

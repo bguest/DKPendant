@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 
-#ifdef DEBUG
+#ifndef __AVR_ATtiny85__
   #define MIC_PIN A3
 #else
   #define MIC_PIN A1
@@ -19,10 +19,10 @@ class Sound{
     Sound();
     void init();
     void run();
-    uint8_t volume;
-    uint8_t maxVolume;
-    uint8_t bandAmp[AVG_BANDS_COUNT];
-    uint8_t maxBandAmp[AVG_BANDS_COUNT];
+    uint16_t volume;
+    uint16_t maxVolume;
+    uint16_t bandAmp[AVG_BANDS_COUNT];
+    uint16_t maxBandAmp[AVG_BANDS_COUNT];
 
   private:
     char im[SAMPLES_COUNT];

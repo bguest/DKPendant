@@ -1,6 +1,14 @@
 #ifndef EFFECTS_H
 #define EFFECTS_H
 
+#define LED_COUNT 4
+#if defined(__AVR_ATtiny85__)
+  #define LED_PIN 1
+#else
+  #define LED_PIN 3
+#endif
+
+#include "Adafruit_NeoPixel.h"
 #include "Arduino.h"
 #include "Sound.h"
 #include "effects/Effect.h"
@@ -27,7 +35,7 @@ class Effects{
     Spin spin;
     Levels levels;
 
-    Leds leds;
+    Adafruit_NeoPixel strip;
     EffectData data;
 };
 #endif

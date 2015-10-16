@@ -87,10 +87,6 @@ const prog_int8_t Sinewave[N_WAVE-N_WAVE/4] PROGMEM = {
 };
 
 
-
-
-
-
 /*
  FIX_MPY() - fixed-point multiplication & scaling.
  Substitute inline assembly for hardware-specific

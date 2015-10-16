@@ -1,24 +1,22 @@
 #include "Spin.h"
-#include "Pixel.h"
 
 Spin::Spin(){
 }
 
-void Spin::run(Leds *leds, EffectData data){
-  leds -> off();
+void Spin::run(Adafruit_NeoPixel *strip, EffectData data){
+  this -> off(strip);
+
   uint8_t idx = (millis() / data.tempo) % LED_COUNT;
   uint8_t bright = (255*data.volume)/data.maxVolume;
+  uint8_t red = (0xFF*bright) >> 8;
 
-  leds -> colorAtIndex( 0xFF0000, idx);
+  strip -> setPixelColor(idx, red, 0, 0);
 
   uint8_t dx = (idx + 1) % LED_COUNT;
-  leds -> colorAtIndex( 0x880000, dx);
+  red /= 2;
+  strip -> setPixelColor(dx, red, 0, 0);
 
   dx = (idx - 1) % LED_COUNT;
-  leds -> colorAtIndex( 0x880000, dx);
-
-  //idx = idx + 1 % LED_COUNT;
-  //pixel = &(leds -> pixels[idx]);
-  //pixel -> setColor( CHSV(0,0,128) );
+  strip -> setPixelColor(dx, red, 0, 0);
 }
 

@@ -3,18 +3,23 @@
 #include "effects/Spin.cpp"
 #include "effects/Levels.cpp"
 
+
 Effects::Effects(){
+  //currEffect = &levels;
+  //cEffect = LEVELS;
   currEffect = &spin;
   cEffect = SPIN;
 }
 
 void Effects::init(){
-  leds.init();
+  strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+  strip.begin();
+  strip.show();
 }
 
 void Effects::run(){
-  currEffect -> run(&leds, data);
-  leds.run();
+  currEffect -> run(&strip, data);
+  strip.show();
 }
 
 void Effects::setSoundInfo(Sound *sound){

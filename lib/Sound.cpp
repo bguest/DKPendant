@@ -24,7 +24,7 @@ void Sound::run(){
   }
 
   //this could be done with the fix_fftr function without the im array.
-  fix_fft(data,im,7,0);
+  fix_fft(data,im,BANDS_COUNT,0);
 
   // this gets the absolute value of the values in the array, so we're only dealing with positive numbers
   for (uint8_t i=0; i< SAMPLES_COUNT;i++){
@@ -35,8 +35,8 @@ void Sound::run(){
   // Bands
   for(uint8_t i=0; i < AVG_BANDS_COUNT; i++){
     bandAmp[i] = 0;
-    for(uint8_t j = 0; j < BAND_WIDTH/2; j++){
-      bandAmp[i] += data[i*BAND_WIDTH/2 + j];
+    for(uint8_t j = 0; j < BAND_WIDTH/4; j++){
+      bandAmp[i] += data[i*BAND_WIDTH/4 + j];
     }
     if(bandAmp[i] > maxBandAmp[i]){
       maxBandAmp[i] = bandAmp[i];
