@@ -1,11 +1,7 @@
 #ifndef TEMPO_H
 #define TEMPO_H
 
-#ifndef __AVR_ATtiny85__
-  #define TEMPO_BUTTON 3
-#else
-  #define TEMPO_BUTTON 3
-#endif
+#define TEMPO_BUTTON 2
 
 #include <Bounce2.h>
 
@@ -19,6 +15,7 @@ class Tempo{
     void run();
     uint16_t tempo();
     bool isDoubleTap();
+    bool heldOn;
     bool didUpdate();
 
   private:
@@ -28,6 +25,8 @@ class Tempo{
     Bounce tempoButton;
     uint8_t tapIdx;
     uint16_t tapTimes[TAP_COUNT];
+
+    uint16_t heldStart;
 
     bool _shouldUpdate;
     uint16_t _tempo;

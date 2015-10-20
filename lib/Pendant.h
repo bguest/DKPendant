@@ -5,6 +5,7 @@
 #include "Tempo.h"
 #include "Sound.h"
 #include "Effects.h"
+#include "IRSend.h"
 
 class Pendant{
   public:
@@ -13,6 +14,7 @@ class Pendant{
     void run();
 
   private:
+    IRSend irSend;
     Tempo tempoButton;
     Sound sound;
     Effects effects;

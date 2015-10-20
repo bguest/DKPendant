@@ -9,6 +9,7 @@
 #define __AVR_ATtiny85__
 #ifndef __AVR_ATtiny85__
   #define DEBUG
+  //#include <IRremote.h>
 #endif
 
 Pendant pendant;

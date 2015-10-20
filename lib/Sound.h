@@ -3,11 +3,7 @@
 
 #include "Arduino.h"
 
-#ifndef __AVR_ATtiny85__
-  #define MIC_PIN A3
-#else
-  #define MIC_PIN A1
-#endif
+#define MIC_PIN A3
 
 const uint8_t BANDS_COUNT = 5;
 const uint8_t SAMPLES_COUNT = 32; // 2**BANDS_COUNT

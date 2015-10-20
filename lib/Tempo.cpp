@@ -7,6 +7,7 @@ Tempo::Tempo(){
   _shouldUpdate = false;
   _didUpdate = false;
   _isDoubleTap = false;
+  heldStart = 0;
   tempoButton = Bounce();
 }
 
@@ -30,6 +31,19 @@ void Tempo::run(){
   if(tempoButton.fell()){
     this -> recordTap();
     _didUpdate = true;
+    heldStart = millis();
+  }
+
+  heldOn = false;
+
+  if(digitalRead(TEMPO_BUTTON) == LOW){
+    if( (millis() - heldStart) > 1000){
+      heldOn = true;
+      heldStart = millis();
+    }
+  }else{
+    heldOn = false;
+    heldStart = millis();
   }
 }
 

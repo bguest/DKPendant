@@ -2,11 +2,7 @@
 #define EFFECTS_H
 
 #define LED_COUNT 4
-#if defined(__AVR_ATtiny85__)
-  #define LED_PIN 1
-#else
-  #define LED_PIN 3
-#endif
+#define LED_PIN 4
 
 #include "Adafruit_NeoPixel.h"
 #include "Arduino.h"
