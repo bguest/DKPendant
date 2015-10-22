@@ -26,7 +26,7 @@ class Tempo{
     uint8_t tapIdx;
     uint16_t tapTimes[TAP_COUNT];
 
-    uint16_t heldStart;
+    unsigned long heldStart;
 
     bool _shouldUpdate;
     uint16_t _tempo;

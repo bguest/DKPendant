@@ -28,22 +28,23 @@ void Tempo::run(){
   tempoButton.update();
   _didUpdate = false;
 
+  unsigned long currMillis = millis();
+
   if(tempoButton.fell()){
     this -> recordTap();
     _didUpdate = true;
-    heldStart = millis();
+    heldStart = currMillis;
   }
 
   heldOn = false;
 
   if(digitalRead(TEMPO_BUTTON) == LOW){
-    if( (millis() - heldStart) > 1000){
+    if( currMillis - heldStart >= 1000){
       heldOn = true;
-      heldStart = millis();
+      heldStart = currMillis;
     }
   }else{
-    heldOn = false;
-    heldStart = millis();
+    heldStart = currMillis;
   }
 }
 
