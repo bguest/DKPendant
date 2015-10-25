@@ -7,8 +7,7 @@ void Spin::run(Adafruit_NeoPixel *strip, EffectData data){
   this -> off(strip);
 
   uint8_t idx = (millis() / data.tempo) % LED_COUNT;
-  uint8_t bright = (255*data.volume)/data.maxVolume;
-  uint8_t red = (0xFF*bright) >> 8;
+  uint8_t red = (0xFF*data.volume) >> 8;
 
   strip -> setPixelColor(idx, red, 0, 0);
 

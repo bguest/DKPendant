@@ -2,13 +2,14 @@
 #include "effects/Effect.cpp"
 #include "effects/Spin.cpp"
 #include "effects/Levels.cpp"
-
+#include "effects/ShiftFade.cpp"
 
 Effects::Effects(){
   //currEffect = &levels;
   //cEffect = LEVELS;
   currEffect = &spin;
   cEffect = SPIN;
+  lastRun = 0;
 }
 
 void Effects::init(){
@@ -18,16 +19,18 @@ void Effects::init(){
 }
 
 void Effects::run(){
-  currEffect -> run(&strip, data);
-  strip.show();
+  unsigned long currMillis = millis();
+  if(currMillis - lastRun > UPDATE_DURRATION){
+    lastRun = currMillis;
+    currEffect -> run(&strip, data);
+    strip.show();
+  }
 }
 
 void Effects::setSoundInfo(Sound *sound){
-  data.volume = sound -> volume;
-  data.maxVolume = sound -> maxVolume;
+  data.volume = sound -> volume();
   for(uint8_t i = 0; i < 4; i++){
-    data.maxBandAmp[i] = sound -> maxBandAmp[i];
-    data.bandAmp[i] = sound -> bandAmp[i];
+    data.bandAmp[i] = sound -> bandAmp(i);
   }
 }
 
@@ -42,6 +45,7 @@ void Effects::changeEffect(){
   switch(cEffect){
     case SPIN: currEffect = &spin; break;
     case LEVELS: currEffect = &levels; break;
+    case SHIFT_FADE: currEffect = &shiftFade; break;
   }
 
 }

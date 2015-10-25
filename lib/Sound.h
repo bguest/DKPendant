@@ -15,15 +15,18 @@ class Sound{
     Sound();
     void init();
     void run();
-    uint16_t volume;
-    uint16_t maxVolume;
-    uint16_t bandAmp[AVG_BANDS_COUNT];
-    uint16_t maxBandAmp[AVG_BANDS_COUNT];
+    uint8_t volume();
+    uint8_t bandAmp(uint8_t bandNumber);
 
   private:
     char im[SAMPLES_COUNT];
     char data[SAMPLES_COUNT];
     char data_avgs[SAMPLES_COUNT];
+
+    uint16_t _volume;
+    uint16_t _bandAmp[AVG_BANDS_COUNT];
+    uint16_t maxVolume;
+    uint16_t maxBandAmp[AVG_BANDS_COUNT];
 
 };
 

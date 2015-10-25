@@ -2,6 +2,8 @@
 #include "Arduino.h"
 #include "fix_fft.h"
 
+#define UINT8_MAX 0xFF
+
 Sound::Sound(){
   maxVolume = 0;
   for(uint8_t i = 0; i < AVG_BANDS_COUNT; i++){
@@ -11,6 +13,14 @@ Sound::Sound(){
 
 void Sound::init(){
   pinMode(MIC_PIN, INPUT);
+}
+
+uint8_t Sound::volume(){
+  return (UINT8_MAX * _volume)/maxVolume;
+}
+
+uint8_t Sound::bandAmp(uint8_t i){
+  return (UINT8_MAX * _bandAmp[i])/maxBandAmp[i];
 }
 
 void Sound::run(){
@@ -34,22 +44,22 @@ void Sound::run(){
 
   // Bands
   for(uint8_t i=0; i < AVG_BANDS_COUNT; i++){
-    bandAmp[i] = 0;
+    _bandAmp[i] = 0;
     for(uint8_t j = 0; j < BAND_WIDTH/4; j++){
-      bandAmp[i] += data[i*BAND_WIDTH/4 + j];
+      _bandAmp[i] += data[i*BAND_WIDTH/4 + j];
     }
-    if(bandAmp[i] > maxBandAmp[i]){
-      maxBandAmp[i] = bandAmp[i];
+    if(_bandAmp[i] > maxBandAmp[i]){
+      maxBandAmp[i] = _bandAmp[i];
     }
   }
 
   // Volume
-  volume = 0;
+  _volume = 0;
   for(uint8_t i = 0; i < AVG_BANDS_COUNT ; i++){
-    volume += bandAmp[i];
+    _volume += _bandAmp[i];
   }
-  if(volume > maxVolume){
-    maxVolume = volume;
+  if(_volume > maxVolume){
+    maxVolume = _volume;
   }
 
 
