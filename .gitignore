@@ -2,6 +2,8 @@
 Pendent.b\#*
 Pendent.s\#*
 Pendent.pro
+*.job
+*.pro
 *.ger
 *.gpi
 *.dri
