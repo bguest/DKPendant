@@ -9,11 +9,9 @@
 #define __AVR_ATtiny85__
 #ifndef __AVR_ATtiny85__
   #define DEBUG
-  //#include <IRremote.h>
 #endif
 
 Pendant pendant;
-/*Adafruit_NeoPixel striper = Adafruit_NeoPixel(4, 3, NEO_GRB + NEO_KHZ800);*/
 
 void setup(){
   #if defined (__AVR_ATtiny85__)
@@ -25,13 +23,8 @@ void setup(){
   #endif
 
   pendant.init();
-
-  /*striper.begin();*/
-  /*striper.show();*/
 }
 
 void loop(){
   pendant.run();
-  /*striper.setPixelColor(1, striper.Color(255, 0, 255));*/
-  /*striper.show();*/
 }

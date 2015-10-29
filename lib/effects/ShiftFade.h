@@ -9,11 +9,13 @@ class ShiftFade : public Effect{
   public:
     ShiftFade();
     void run(Adafruit_NeoPixel *strip, EffectData data);
+    void randomize();
 
   private:
     unsigned long lastStep;
     uint8_t startIdx;
-    uint16_t hue[4];
+    uint16_t hue[LED_COUNT];
+    uint8_t hueSpeed[LED_COUNT];
 };
 
 #endif

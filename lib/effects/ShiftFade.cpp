@@ -1,14 +1,19 @@
 #include "ShiftFade.h"
 
 #define FADE_SPEED 10
-const uint8_t STEP_SIZE = UINT8_MAX/4;
 
 ShiftFade::ShiftFade(){
   lastStep = 0;
   startIdx = 0;
-  for(uint8_t i; i < LED_COUNT; i++){
-    hue[i] = (0 + STEP_SIZE*i) << 8;
+  this -> randomize();
+}
+
+void ShiftFade::randomize(){
+  for(uint8_t i; i< LED_COUNT; i++){
+    hue[i] = random(255) << 8;
+    hueSpeed[i] = random(1, 30);
   }
+
 }
 
 void ShiftFade::run(Adafruit_NeoPixel *strip, EffectData data){
@@ -16,18 +21,17 @@ void ShiftFade::run(Adafruit_NeoPixel *strip, EffectData data){
   uint16_t step = 0;
   if(currMillis - lastStep > data.tempo){
     startIdx = ++startIdx % LED_COUNT;
-    step = STEP_SIZE << 8;
-    lastStep = currMillis;
   }
 
-  uint8_t hue8;
-  uint8_t ampIdx;
+  //uint8_t hue8;
+  //uint8_t ledIdx;
+  //uint32_t color;
   for(uint8_t i=0; i< LED_COUNT; i++){
-    ampIdx = (i + startIdx) % LED_COUNT;
-    hue[i] += FADE_SPEED + step;
-    hue8 = hue[i] >> 8;
-    uint32_t color = this -> wheel(hue8, data.bandAmp[ampIdx]);
-    strip -> setPixelColor(i, color);
+    hue[i] += hueSpeed[i];
+    uint8_t hue8 = hue[i] >> 8;
+    uint32_t color = this -> wheel(hue8, data.bandAmp[i]);
+    uint8_t ledIdx = (i + startIdx) % LED_COUNT;
+    strip -> setPixelColor(ledIdx, color);
   }
 
 }

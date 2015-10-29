@@ -47,5 +47,6 @@ void Effects::changeEffect(){
     case LEVELS: currEffect = &levels; break;
     case SHIFT_FADE: currEffect = &shiftFade; break;
   }
+  currEffect -> randomize();
 
 }
