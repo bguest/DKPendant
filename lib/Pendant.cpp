@@ -7,7 +7,6 @@ void Pendant::init(){
   tempoButton.init();
   effects.init();
   sound.init();
-  irSend.init();
 }
 
 void Pendant::run(){
