@@ -6,7 +6,6 @@
   #include <avr/power.h>
 #endif
 
-#define __AVR_ATtiny85__
 #ifndef __AVR_ATtiny85__
   #define DEBUG
 #endif

@@ -5,14 +5,18 @@
 #define UINT8_MAX 0xFF
 
 Sound::Sound(){
-  maxVolume = 0;
-  for(uint8_t i = 0; i < AVG_BANDS_COUNT; i++){
-    maxBandAmp[i] = 0;
-  }
+  this -> reset();
 }
 
 void Sound::init(){
   pinMode(MIC_PIN, INPUT);
+}
+
+void Sound::reset(){
+  maxVolume = 0;
+  for(uint8_t i = 0; i < AVG_BANDS_COUNT; i++){
+    maxBandAmp[i] = 0;
+  }
 }
 
 uint8_t Sound::volume(){
@@ -45,8 +49,8 @@ void Sound::run(){
   // Bands
   for(uint8_t i=0; i < AVG_BANDS_COUNT; i++){
     _bandAmp[i] = 0;
-    for(uint8_t j = 0; j < BAND_WIDTH/4; j++){
-      _bandAmp[i] += data[i*BAND_WIDTH/4 + j];
+    for(uint8_t j = 0; j < BAND_WIDTH/6; j++){
+      _bandAmp[i] += data[i*BAND_WIDTH/6 + j];
     }
     if(_bandAmp[i] > maxBandAmp[i]){
       maxBandAmp[i] = _bandAmp[i];

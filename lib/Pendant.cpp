@@ -1,5 +1,7 @@
 #include "Pendant.h"
 
+#define PENDANT_ID 0xFF01
+
 Pendant::Pendant(){
 };
 
@@ -18,12 +20,15 @@ void Pendant::run(){
 
   if(tempoButton.didUpdate()){
     if(tempoButton.isDoubleTap()){
+      sound.reset();
       effects.changeEffect();
     }
     effects.setTempo(tempoButton.tempo());
   }
   if(tempoButton.heldOn){
-    irSend.sendSAMSUNG(0xBCDEF012, 32);
+    uint32_t send = (PENDANT_ID << 16);
+    send |= (uint32_t)tempoButton.tempo();
+    irSend.sendSAMSUNG(send, 32);
   }
 
   effects.run();

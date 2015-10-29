@@ -13,6 +13,7 @@ const uint8_t BAND_WIDTH = SAMPLES_COUNT / AVG_BANDS_COUNT;
 class Sound{
   public:
     Sound();
+    void reset();
     void init();
     void run();
     uint8_t volume();
