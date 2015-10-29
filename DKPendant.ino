@@ -3,6 +3,10 @@
 #include <Adafruit_NeoPixel.h>
 #include <IRremote.h>
 
+#ifdef __AVR__
+  #include <avr/power.h>
+#endif
+
 #ifndef __AVR_ATmega328P__
   #define DEBUG
 #endif

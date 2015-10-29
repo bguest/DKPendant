@@ -21,16 +21,19 @@ void ShiftFade::run(Adafruit_NeoPixel *strip, EffectData data){
   uint16_t step = 0;
   if(currMillis - lastStep > data.tempo){
     startIdx = ++startIdx % LED_COUNT;
+    lastStep = currMillis;
   }
 
-  //uint8_t hue8;
-  //uint8_t ledIdx;
-  //uint32_t color;
+  uint8_t hue8;
+  uint8_t ledIdx;
+  uint32_t color;
+  uint8_t brightness;
   for(uint8_t i=0; i< LED_COUNT; i++){
     hue[i] += hueSpeed[i];
-    uint8_t hue8 = hue[i] >> 8;
-    uint32_t color = this -> wheel(hue8, data.bandAmp[i]);
-    uint8_t ledIdx = (i + startIdx) % LED_COUNT;
+    hue8 = hue[i] >> 8;
+    brightness = data.bandAmp[i];
+    color = this -> wheel(hue8, brightness);
+    ledIdx = (i + startIdx) % LED_COUNT;
     strip -> setPixelColor(ledIdx, color);
   }
 
