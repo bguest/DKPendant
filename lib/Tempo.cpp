@@ -9,14 +9,15 @@ Tempo::Tempo(){
   _isDoubleTap = false;
   heldStart = 0;
   tempoButton = Bounce();
+  heldOn = false;
 }
 
 void Tempo::init(){
 
-  pinMode(TEMPO_BUTTON,INPUT_PULLUP);
+  pinMode(TEMPO_BUTTON, INPUT);
 
   tempoButton.attach(TEMPO_BUTTON);
-  tempoButton.interval(1);
+  tempoButton.interval(5);
   for(uint8_t idx = 0; idx < TAP_COUNT; idx++){
     tapTimes[idx] = 0;
   }
@@ -30,7 +31,7 @@ void Tempo::run(){
 
   unsigned long currMillis = millis();
 
-  if(tempoButton.fell()){
+  if(tempoButton.rose()){
     this -> recordTap();
     _didUpdate = true;
     heldStart = currMillis;
@@ -38,7 +39,7 @@ void Tempo::run(){
 
   heldOn = false;
 
-  if(digitalRead(TEMPO_BUTTON) == LOW){
+  if(digitalRead(TEMPO_BUTTON) == HIGH){
     if( currMillis - heldStart >= 1000){
       heldOn = true;
       heldStart = currMillis;
