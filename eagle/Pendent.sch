@@ -12195,15 +12195,117 @@ Source: www.kingbright.com</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="bg_eagle_lib">
+<packages>
+<package name="TOSP62XX">
+<smd name="P2" x="-0.635" y="-2" dx="0.9" dy="2.2" layer="1"/>
+<smd name="P1" x="-1.905" y="-2" dx="0.9" dy="2.2" layer="1"/>
+<smd name="P3" x="0.635" y="-2" dx="0.9" dy="2.2" layer="1"/>
+<smd name="P4" x="1.905" y="-2" dx="0.9" dy="2.2" layer="1"/>
+<wire x1="-3.6" y1="-2.65" x2="3.6" y2="-2.65" width="0.127" layer="21"/>
+<wire x1="3.6" y1="-2.65" x2="3.6" y2="2.65" width="0.127" layer="21"/>
+<wire x1="3.6" y1="2.65" x2="-3.6" y2="2.65" width="0.127" layer="21"/>
+<wire x1="-3.6" y1="2.65" x2="-3.6" y2="-2.65" width="0.127" layer="21"/>
+<text x="0" y="1.5" size="1" layer="25" align="bottom-center">&gt;NAME</text>
+<wire x1="-3.6" y1="1" x2="-3.9" y2="1" width="0.127" layer="25"/>
+<wire x1="-3.9" y1="1" x2="-3.9" y2="0.5" width="0.127" layer="25"/>
+<wire x1="-3.9" y1="0.5" x2="-3.6" y2="0.5" width="0.127" layer="25"/>
+<wire x1="-3.9" y1="-0.5" x2="-3.9" y2="-1" width="0.127" layer="25"/>
+<wire x1="-3.9" y1="-0.5" x2="-3.6" y2="-0.5" width="0.127" layer="25"/>
+<wire x1="-3.9" y1="-1" x2="-3.6" y2="-1" width="0.127" layer="25"/>
+</package>
+<package name="TOSP62XX_A">
+<smd name="P2" x="-0.635" y="-1.8" dx="0.9" dy="2.2" layer="1"/>
+<smd name="P1" x="-1.905" y="-1.8" dx="0.9" dy="2.2" layer="1"/>
+<smd name="P3" x="0.635" y="-1.8" dx="0.9" dy="2.2" layer="1"/>
+<smd name="P4" x="1.905" y="-1.8" dx="0.9" dy="2.2" layer="1"/>
+<wire x1="-3.6" y1="-2.65" x2="3.6" y2="-2.65" width="0.127" layer="21"/>
+<wire x1="3.6" y1="-2.65" x2="3.6" y2="2.65" width="0.127" layer="21"/>
+<wire x1="3.6" y1="2.65" x2="-3.6" y2="2.65" width="0.127" layer="21"/>
+<wire x1="-3.6" y1="2.65" x2="-3.6" y2="-2.65" width="0.127" layer="21"/>
+<text x="0" y="1.5" size="1" layer="25" align="bottom-center">&gt;NAME</text>
+<wire x1="-3.6" y1="1" x2="-3.9" y2="1" width="0.127" layer="25"/>
+<wire x1="-3.9" y1="1" x2="-3.9" y2="0.5" width="0.127" layer="25"/>
+<wire x1="-3.9" y1="0.5" x2="-3.6" y2="0.5" width="0.127" layer="25"/>
+<wire x1="-3.9" y1="-0.5" x2="-3.9" y2="-1" width="0.127" layer="25"/>
+<wire x1="-3.9" y1="-0.5" x2="-3.6" y2="-0.5" width="0.127" layer="25"/>
+<wire x1="-3.9" y1="-1" x2="-3.6" y2="-1" width="0.127" layer="25"/>
+</package>
+</packages>
+<symbols>
+<symbol name="IR_RECEIVER">
+<pin name="VCC" x="5.08" y="2.54" length="short" direction="pwr" rot="R180"/>
+<pin name="OUT" x="5.08" y="0" length="short" direction="out" rot="R180"/>
+<pin name="GND" x="5.08" y="-2.54" length="short" direction="pwr" rot="R180"/>
+<wire x1="2.54" y1="5.08" x2="2.54" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-5.08" x2="-5.08" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="5.08" x2="2.54" y2="5.08" width="0.254" layer="94"/>
+<text x="0" y="5.842" size="2" layer="95" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-5.842" size="2" layer="95" align="top-center">&gt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="IR_TOSP62">
+<description>&lt;h3&gt;TSOP62.., TSOP64..&lt;/h3&gt;
+
+The TSOP6... series are miniaturized SMD IR receiver
+modules for infrared remote control systems. A PIN diode
+and a preamplifier are assembled on a leadframe, the epoxy
+package contains an IR filter.
+The demodulated output signal can be directly connected to
+a microprocessor for decoding.
+The TSOP62.. and TSOP64.. are optimized to suppress
+almost all spurious pulses from energy saving lamps like
+CFLs. The AGC4 used in the TSOP64.. may suppress some
+data signals. The TSOP62.. is a legacy product for all
+common IR remote control data formats. Between these
+two receiver types, the TSOP64.. is preferred. Customers
+should initially try the TSOP64.. in their design.
+These components have not been qualified according to
+automotive specifications.</description>
+<gates>
+<gate name="TOSP62" symbol="IR_RECEIVER" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TOSP62XX">
+<connects>
+<connect gate="TOSP62" pin="GND" pad="P1"/>
+<connect gate="TOSP62" pin="OUT" pad="P4"/>
+<connect gate="TOSP62" pin="VCC" pad="P3"/>
+</connects>
+<technologies>
+<technology name="38TTCT-ND">
+<attribute name="DISTANCE" value="40M" constant="no"/>
+<attribute name="FREQUENCY" value="38kHZ" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="38TTCT-ND" package="TOSP62XX_A">
+<connects>
+<connect gate="TOSP62" pin="GND" pad="P1"/>
+<connect gate="TOSP62" pin="OUT" pad="P4"/>
+<connect gate="TOSP62" pin="VCC" pad="P3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
 <variantdefs>
 </variantdefs>
 <classes>
-<class number="0" name="default" width="0.2032" drill="0">
+<class number="0" name="default" width="0.254" drill="0.381">
+<clearance class="0" value="0.254"/>
 </class>
-<class number="1" name="vcc" width="0.254" drill="0">
+<class number="1" name="vcc" width="0.508" drill="0.381">
+<clearance class="1" value="0.254"/>
 </class>
 </classes>
 <parts>
@@ -12275,6 +12377,9 @@ Source: www.kingbright.com</description>
 <part name="S3" library="Testing" deviceset="SWITCH-MOMENTARY-2" device="SMD-ALT01" value="RESET"/>
 <part name="Q3" library="Testing" deviceset="RESONATOR" device="1:1" value="8/16/20MHz"/>
 <part name="JP1" library="SparkFun-Connectors" deviceset="M03" device="PTH"/>
+<part name="IR" library="bg_eagle_lib" deviceset="IR_TOSP62" device="38TTCT-ND" value="IR_TOSP6238TTCT-ND"/>
+<part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
+<part name="GND17" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -12365,6 +12470,9 @@ Source: www.kingbright.com</description>
 <attribute name="VALUE" x="92.202" y="233.172" size="1.778" layer="96"/>
 </instance>
 <instance part="JP1" gate="G$1" x="-40.64" y="114.3"/>
+<instance part="IR" gate="TOSP62" x="27.94" y="175.26"/>
+<instance part="SUPPLY1" gate="1" x="35.56" y="180.34"/>
+<instance part="GND17" gate="1" x="35.56" y="167.64"/>
 </instances>
 <busses>
 </busses>
@@ -12469,6 +12577,12 @@ Source: www.kingbright.com</description>
 <wire x1="88.9" y1="182.88" x2="88.9" y2="175.26" width="0.1524" layer="91"/>
 <pinref part="JP10" gate="G$1" pin="4"/>
 <wire x1="83.82" y1="175.26" x2="88.9" y2="175.26" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="IR" gate="TOSP62" pin="VCC"/>
+<pinref part="SUPPLY1" gate="1" pin="VCC"/>
+<wire x1="33.02" y1="177.8" x2="35.56" y2="177.8" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="177.8" x2="35.56" y2="180.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -12633,6 +12747,12 @@ Source: www.kingbright.com</description>
 <pinref part="U3" gate="G$1" pin="GND@1"/>
 <pinref part="U3" gate="G$1" pin="GND@2"/>
 <pinref part="GND21" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="IR" gate="TOSP62" pin="GND"/>
+<pinref part="GND17" gate="1" pin="GND"/>
+<wire x1="33.02" y1="172.72" x2="35.56" y2="172.72" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="172.72" x2="35.56" y2="170.18" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -12952,6 +13072,11 @@ Source: www.kingbright.com</description>
 <wire x1="149.86" y1="231.14" x2="152.4" y2="231.14" width="0.1524" layer="91"/>
 <pinref part="U3" gate="G$1" pin="PD5(T1)"/>
 <label x="152.4" y="231.14" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IR" gate="TOSP62" pin="OUT"/>
+<wire x1="33.02" y1="175.26" x2="35.56" y2="175.26" width="0.1524" layer="91"/>
+<label x="35.56" y="175.26" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="D6" class="0">
