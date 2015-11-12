@@ -2,6 +2,7 @@
 #define PENDANT_H
 
 #include "Arduino.h"
+#include "Power.h"
 #include "Tempo.h"
 #include "Sound.h"
 #include "Effects.h"
@@ -14,6 +15,7 @@ class Pendant{
     void run();
 
   private:
+    Power power;
     IRsend irSend;
     Tempo tempoButton;
     Sound sound;

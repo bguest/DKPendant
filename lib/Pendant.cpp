@@ -4,6 +4,8 @@ Pendant::Pendant(){
 };
 
 void Pendant::init(){
+
+  power.init();
   tempoButton.init();
   effects.init();
   sound.init();
@@ -11,6 +13,7 @@ void Pendant::init(){
 
 void Pendant::run(){
 
+  power.run();
   tempoButton.run();
   sound.run();
   effects.setSoundInfo(&sound);
