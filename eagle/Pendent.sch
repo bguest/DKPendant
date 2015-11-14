@@ -12712,11 +12712,6 @@ automotive specifications.</description>
 <label x="132.08" y="157.48" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="R7" gate="G$1" pin="2"/>
-<wire x1="144.78" y1="116.84" x2="147.32" y2="116.84" width="0.1524" layer="91"/>
-<label x="147.32" y="116.84" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
 <pinref part="R5" gate="G$1" pin="1"/>
 <wire x1="0" y1="63.5" x2="-2.54" y2="63.5" width="0.1524" layer="91"/>
 <label x="-2.54" y="63.5" size="1.4224" layer="95" rot="R180" xref="yes"/>
@@ -12824,6 +12819,11 @@ automotive specifications.</description>
 <wire x1="129.54" y1="154.94" x2="132.08" y2="154.94" width="0.1524" layer="91"/>
 <pinref part="U3" gate="G$1" pin="PB2(SS/OC1B)"/>
 <label x="132.08" y="154.94" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="R7" gate="G$1" pin="2"/>
+<wire x1="144.78" y1="116.84" x2="147.32" y2="116.84" width="0.1524" layer="91"/>
+<label x="147.32" y="116.84" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="N$12" class="0">
