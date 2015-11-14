@@ -7,9 +7,7 @@
   #include <avr/power.h>
 #endif
 
-#ifndef __AVR_ATmega328P__
-  #define DEBUG
-#endif
+/*#define DEBUG*/
 
 Pendant pendant;
 

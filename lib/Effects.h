@@ -2,7 +2,7 @@
 #define EFFECTS_H
 
 #define LED_COUNT 4
-#define LED_PIN 4
+#define LED_PIN 10
 
 #include "Adafruit_NeoPixel.h"
 #include "Arduino.h"
@@ -27,6 +27,7 @@ class Effects{
     void setTempo(uint16_t tempo);
     void setSoundInfo(Sound* sound);
     void changeEffect();
+    void off();
 
   private:
     unsigned long lastRun;

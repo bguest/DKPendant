@@ -15,7 +15,11 @@ void Pendant::init(){
 
 void Pendant::run(){
 
-  power.run();
+  if(power.buttonPressed()){
+    effects.off();
+    power.off();
+  }
+
   tempoButton.run();
   sound.run();
   effects.setSoundInfo(&sound);

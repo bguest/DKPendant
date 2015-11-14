@@ -50,3 +50,8 @@ void Effects::changeEffect(){
   currEffect -> randomize();
 
 }
+
+void Effects::off(){
+  currEffect -> off(&strip);
+  strip.show();
+}
