@@ -6,7 +6,6 @@
 
 class Levels : public Effect{
   public:
-    Levels();
     void run(Adafruit_NeoPixel *strip, EffectData data);
 };
 #endif

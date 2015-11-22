@@ -1,8 +1,5 @@
 #include "Levels.h"
 
-Levels::Levels(){
-}
-
 void Levels::run(Adafruit_NeoPixel *strip, EffectData data){
 
   uint8_t hue;

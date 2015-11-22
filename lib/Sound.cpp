@@ -41,16 +41,19 @@ void Sound::run(){
   fix_fft(data,im,BANDS_COUNT,0);
 
   // this gets the absolute value of the values in the array, so we're only dealing with positive numbers
-  for (uint8_t i=0; i< SAMPLES_COUNT;i++){
-    data[i] = sqrt(data[i] * data[i] + im[i] * im[i]);
+  uint8_t shift = 1;
+  for (uint8_t i=0; i< SAMPLES_COUNT - shift;i++){
+    data[i] = sqrt(data[i+shift] * data[i+shift] + im[i+shift] * im[i+shift]);
   };
-
+  for (uint8_t i = SAMPLES_COUNT - shift; i < SAMPLES_COUNT; i++){
+    data[i] = 0;
+  }
 
   // Bands
   for(uint8_t i=0; i < AVG_BANDS_COUNT; i++){
     _bandAmp[i] = 0;
-    for(uint8_t j = 0; j < BAND_WIDTH/6; j++){
-      _bandAmp[i] += data[i*BAND_WIDTH/6 + j];
+    for(uint8_t j = 0; j < BAND_WIDTH/4; j++){
+      _bandAmp[i] += data[i*BAND_WIDTH/4 + j];
     }
     if(_bandAmp[i] > maxBandAmp[i]){
       maxBandAmp[i] = _bandAmp[i];
