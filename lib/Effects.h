@@ -13,8 +13,8 @@
 #include "effects/ShiftFade.h"
 
 #define SPIN 0
-#define LEVELS 1
-#define SHIFT_FADE 2
+#define SHIFT_FADE 1
+#define LEVELS 2
 #define EFFECT_COUNT 3
 
 const uint8_t UPDATE_DURRATION = 5;
@@ -26,6 +26,10 @@ class Effects{
     void run();
     void setTempo(uint16_t tempo);
     void setSoundInfo(Sound* sound);
+    void randomize();
+    void setEffect(uint8_t kEffect);
+    uint8_t getEffect();
+    void setHueAll(uint8_t hue);
     void changeEffect();
     void off();
 

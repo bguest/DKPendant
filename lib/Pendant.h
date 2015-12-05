@@ -8,6 +8,9 @@
 #include "Effects.h"
 #include "IRremote.h"
 
+#define PENDANT_ID 0x12
+#define IR_PIN 5
+
 class Pendant{
   public:
     Pendant();
@@ -16,9 +19,13 @@ class Pendant{
 
   private:
     Power power;
-    IRsend irSend;
     Tempo tempoButton;
     Sound sound;
     Effects effects;
+
+    IRsend irSend;
+    IRrecv *irrecv;
+    decode_results irResults;
+    void handleIrCode(uint32_t irCode);
 };
 #endif

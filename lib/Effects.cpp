@@ -18,11 +18,18 @@ void Effects::init(){
   strip.show();
 }
 
+void Effects::randomize(){
+  for(uint8_t i; i<LED_COUNT; i++){
+    data.hue[i] = random(255) << 8;
+  }
+  currEffect -> randomize();
+}
+
 void Effects::run(){
   unsigned long currMillis = millis();
   if(currMillis - lastRun > UPDATE_DURRATION){
     lastRun = currMillis;
-    currEffect -> run(&strip, data);
+    currEffect -> run(&strip, &data);
     strip.show();
   }
 }
@@ -38,17 +45,30 @@ void Effects::setTempo(uint16_t aTempo){
   data.tempo = aTempo;
 }
 
-void Effects::changeEffect(){
-  cEffect++;
-  cEffect = cEffect % EFFECT_COUNT;
+void Effects::setHueAll(uint8_t hue){
+  for(uint8_t i=0; i<LED_COUNT; i++){
+    data.hue[i] = hue << 8;
+  }
+}
 
+uint8_t Effects::getEffect(){
+  return cEffect;
+}
+
+void Effects::setEffect(uint8_t kEffect){
+  cEffect = kEffect;
   switch(cEffect){
     case SPIN: currEffect = &spin; break;
     case LEVELS: currEffect = &levels; break;
     case SHIFT_FADE: currEffect = &shiftFade; break;
   }
   currEffect -> randomize();
+}
 
+void Effects::changeEffect(){
+  cEffect++;
+  cEffect = cEffect % EFFECT_COUNT;
+  this -> setEffect(cEffect);
 }
 
 void Effects::off(){

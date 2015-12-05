@@ -4,7 +4,8 @@
 void wake()
 {
   sleep_disable();     // cancel sleep as a precaution
-  detachInterrupt (0); // precautionary while we do other stuff
+  detachInterrupt(0); // precautionary while we do other stuff
+  ADCSRA |= (1 << ADEN); // Turn On ADC
 }  // end of wake
 
 
@@ -16,7 +17,7 @@ void Power::init(){
   pinMode(SLEEP_PIN, INPUT_PULLUP);
 
   sleepButton.attach(SLEEP_PIN);
-  sleepButton.interval(1);
+  sleepButton.interval(5);
 }
 
 bool Power::buttonPressed(){
@@ -33,18 +34,18 @@ bool Power::buttonPressed(){
 void Power::off(){
 
   // disable ADC
-  ADCSRA = 0;
+  ADCSRA &= ~(1<<ADEN);
 
-  set_sleep_mode (SLEEP_MODE_PWR_DOWN);
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
   sleep_enable();
 
   // Do not interrupt before we go to sleep, or the
   // ISR will detach interrupts and we won't wake.
-  noInterrupts ();
+  noInterrupts();
 
   // will be called when pin D2 goes low
-  attachInterrupt (digitalPinToInterrupt(SLEEP_PIN), wake, FALLING);
-  EIFR = bit (INTF0);  // clear flag for interrupt 0
+  attachInterrupt(digitalPinToInterrupt(SLEEP_PIN), wake, FALLING);
+  EIFR = bit(INTF0);  // clear flag for interrupt 0
 
   // turn off brown-out enable in software
   // BODS must be set to one and BODSE must be set to zero within four clock cycles
@@ -55,7 +56,7 @@ void Power::off(){
   // We are guaranteed that the sleep_cpu call will be done
   // as the processor executes the next instruction after
   // interrupts are turned on.
-  interrupts ();  // one cycle
-  sleep_cpu ();   // one cycle
+  interrupts();  // one cycle
+  sleep_cpu();   // one cycle
 }
 

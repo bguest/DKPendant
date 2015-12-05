@@ -3,7 +3,7 @@
 Effect::Effect(){
 }
 
-void Effect::run(Adafruit_NeoPixel *strip, EffectData data){
+void Effect::run(Adafruit_NeoPixel *strip, EffectData *data){
 }
 
 void Effect::randomize(){
