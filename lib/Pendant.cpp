@@ -37,11 +37,12 @@ void Pendant::run(){
     effects.setTempo(tempoButton.tempo());
   }
   if(tempoButton.heldOn){
-    uint32_t send = PENDANT_ID << 24;
-    send |= effects.getEffect() << 16;
-    send |= tempoButton.tempo();
+    uint32_t send = (uint32_t)PENDANT_ID << 24;
+    send |= (uint32_t)effects.getEffect() << 16;
+    send |= (uint32_t)tempoButton.tempo();
     irSend.sendSAMSUNG(send, 32);
-    //this -> handleIrCode(send);
+    this -> handleIrCode(send);
+    irrecv -> enableIRIn();
   }
 
   effects.run();
@@ -49,8 +50,7 @@ void Pendant::run(){
 
 void Pendant::handleIrCode(uint32_t irCode){
   uint8_t kEffect = 0x00FF & irCode >> 16;
-  //effects.setEffect(kEffect);
-  effects.setEffect(SHIFT_FADE);
+  effects.setEffect(kEffect);
   uint16_t tempo = 0x0000FFFF & irCode;
   uint8_t hue = irCode >> 24;
   effects.setHueAll(hue);

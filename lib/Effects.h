@@ -11,11 +11,15 @@
 #include "effects/Spin.h"
 #include "effects/Levels.h"
 #include "effects/ShiftFade.h"
+#include "effects/Snake.h"
+#include "effects/RandomOn.h"
 
 #define SPIN 0
 #define SHIFT_FADE 1
 #define LEVELS 2
-#define EFFECT_COUNT 3
+#define SNAKE 3
+#define RANDOM_ON 4
+#define EFFECT_COUNT 5
 
 const uint8_t UPDATE_DURRATION = 5;
 
@@ -38,9 +42,15 @@ class Effects{
     uint8_t cEffect;
     Effect* currEffect;
 
+    unsigned long lastStep;
+    uint8_t startIdx;
+    void updateStartIdx();
+
     Spin spin;
     Levels levels;
     ShiftFade shiftFade;
+    Snake snake;
+    RandomOn randomOn;
 
     Adafruit_NeoPixel strip;
     EffectData data;

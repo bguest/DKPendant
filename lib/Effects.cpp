@@ -3,12 +3,18 @@
 #include "effects/Spin.cpp"
 #include "effects/Levels.cpp"
 #include "effects/ShiftFade.cpp"
+#include "effects/Snake.cpp"
+#include "effects/RandomOn.cpp"
 
 Effects::Effects(){
   //currEffect = &levels;
   //cEffect = LEVELS;
-  currEffect = &spin;
-  cEffect = SPIN;
+  //currEffect = &spin;
+  //cEffect = SPIN;
+  //currEffect = &snake;
+  //cEffect = SNAKE;
+  currEffect = &randomOn;
+  cEffect = RANDOM_ON;
   lastRun = 0;
 }
 
@@ -22,6 +28,8 @@ void Effects::randomize(){
   for(uint8_t i; i<LED_COUNT; i++){
     data.hue[i] = random(255) << 8;
   }
+  data.startIdx = 0;
+  data.tempo = 240;
   currEffect -> randomize();
 }
 
@@ -29,15 +37,23 @@ void Effects::run(){
   unsigned long currMillis = millis();
   if(currMillis - lastRun > UPDATE_DURRATION){
     lastRun = currMillis;
+    this -> updateStartIdx();
     currEffect -> run(&strip, &data);
     strip.show();
   }
 }
+void Effects::updateStartIdx(){
+  unsigned long currMillis = millis();
+  if(currMillis - lastStep > data.tempo){
+    data.startIdx = ++startIdx % LED_COUNT;
+    lastStep = currMillis;
+  }
+}
 
 void Effects::setSoundInfo(Sound *sound){
-  data.volume = sound -> volume();
+  data.volume = data.volume/2 + sound->volume()/2;
   for(uint8_t i = 0; i < 4; i++){
-    data.bandAmp[i] = sound -> bandAmp(i);
+    data.bandAmp[i] = data.bandAmp[i]/2 + sound->bandAmp(i)/2;
   }
 }
 
@@ -61,6 +77,8 @@ void Effects::setEffect(uint8_t kEffect){
     case SPIN: currEffect = &spin; break;
     case LEVELS: currEffect = &levels; break;
     case SHIFT_FADE: currEffect = &shiftFade; break;
+    case SNAKE: currEffect = &snake; break;
+    case RANDOM_ON: currEffect = &randomOn; break;
   }
   currEffect -> randomize();
 }
