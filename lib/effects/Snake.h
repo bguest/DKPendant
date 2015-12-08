@@ -12,6 +12,7 @@ class Snake : public Effect{
     void randomize();
 
   private:
+    uint8_t pixel[3];
     int8_t hueSpeed;
     uint8_t hueStep;
 };
