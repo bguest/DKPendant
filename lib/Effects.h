@@ -13,13 +13,15 @@
 #include "effects/ShiftFade.h"
 #include "effects/Snake.h"
 #include "effects/RandomOn.h"
+#include "effects/RandomSound.h"
 
 #define SPIN 0
 #define SHIFT_FADE 1
 #define LEVELS 2
 #define SNAKE 3
 #define RANDOM_ON 4
-#define EFFECT_COUNT 5
+#define RANDOM_SOUND 5
+#define EFFECT_COUNT 6
 
 const uint8_t UPDATE_DURRATION = 5;
 
@@ -51,6 +53,7 @@ class Effects{
     ShiftFade shiftFade;
     Snake snake;
     RandomOn randomOn;
+    RandomSound randomSound;
 
     Adafruit_NeoPixel strip;
     EffectData data;

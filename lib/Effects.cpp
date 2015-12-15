@@ -5,6 +5,7 @@
 #include "effects/ShiftFade.cpp"
 #include "effects/Snake.cpp"
 #include "effects/RandomOn.cpp"
+#include "effects/RandomSound.cpp"
 
 Effects::Effects(){
   //currEffect = &levels;
@@ -13,8 +14,10 @@ Effects::Effects(){
   //cEffect = SPIN;
   //currEffect = &snake;
   //cEffect = SNAKE;
-  currEffect = &randomOn;
-  cEffect = RANDOM_ON;
+  //currEffect = &randomOn;
+  //cEffect = RANDOM_ON;
+  currEffect = &randomSound;
+  cEffect = RANDOM_SOUND;
   lastRun = 0;
 }
 
@@ -79,6 +82,7 @@ void Effects::setEffect(uint8_t kEffect){
     case SHIFT_FADE: currEffect = &shiftFade; break;
     case SNAKE: currEffect = &snake; break;
     case RANDOM_ON: currEffect = &randomOn; break;
+    case RANDOM_SOUND: currEffect = &randomSound; break;
   }
   currEffect -> randomize();
 }

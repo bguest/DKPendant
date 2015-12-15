@@ -8,7 +8,7 @@ void RandomOn::randomize(){
   lastStep = 0;
   activePixel[0] = 0;
   activePixel[1] = 1;
-  maxHueStep = random(0xFFFF);
+  maxHueStep = random(0x0FFF);
 }
 
 void RandomOn::run(Adafruit_NeoPixel *strip, EffectData *data){
@@ -22,6 +22,7 @@ void RandomOn::run(Adafruit_NeoPixel *strip, EffectData *data){
   this-> off(strip);
 
   for(uint8_t i=0; i<2; i++){
+    data->hue[activePixel[i]] += data->volume << 2;
     uint8_t hue8 = data->hue[activePixel[i]] >> 8;
     uint8_t brightness;
     if(i == 0){

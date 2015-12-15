@@ -1,6 +1,7 @@
 #include "Snake.h"
 
 Snake::Snake(){
+  lastStep = 0;
   this -> randomize();
 }
 
@@ -9,20 +10,41 @@ void Snake::randomize(){
     pixel[i] = i;
   }
   hueSpeed = random(-30,30);
-  hueStep = random(0,20);
 }
 
 void Snake::run(Adafruit_NeoPixel *strip, EffectData *data){
 
-  data->hue[0] += hueSpeed;
-  uint16_t clr = data->hue[0];
-  uint8_t brightness = UINT8_MAX;
-  for(uint8_t i=0; i<LED_COUNT; i++){
-    data->hue[i] = clr + i*(hueStep << 8);
-    uint8_t hue8 = data->hue[i] >> 8;
+  unsigned long currMillis = millis();
+  if(currMillis - lastStep > data->tempo){
+    lastStep = currMillis;
+    this ->updatePixels();
+    uint8_t p = pixel[0];
+    data->hue[p] = data->hue[pixel[1]]/2 + data->hue[p]/ + 0xFF;
+  }
+  this-> off(strip);
+
+  for(uint8_t i=0; i<3; i++){
+    uint8_t hue8 = data->hue[pixel[i]] >> 8;
+    uint8_t brightness;
+    switch(i){
+      case 0:
+        brightness = 127 - 127*(currMillis - lastStep)/data->tempo;
+        break;
+      case 1:
+        brightness = 255 - 127*(currMillis - lastStep)/data->tempo;
+        break;
+      case 2:
+        brightness = 255*(currMillis - lastStep)/data->tempo;
+        break;
+    }
     uint32_t color = this -> wheel(hue8, brightness);
-    brightness -= UINT8_MAX/4;
-    uint8_t ledIdx = (i + data->startIdx) % LED_COUNT;
-    strip -> setPixelColor(ledIdx, color);
+    strip -> setPixelColor(pixel[i], color);
+  }
+}
+
+void Snake::updatePixels(){
+  for(uint8_t i=0; i<3; i++){
+    pixel[i]++;
+    pixel[i] = pixel[i] % LED_COUNT;
   }
 }

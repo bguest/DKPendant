@@ -18,6 +18,7 @@ class Sound{
     void run();
     uint8_t volume();
     uint8_t bandAmp(uint8_t bandNumber);
+    uint16_t maxVolume;
 
   private:
     char im[SAMPLES_COUNT];
@@ -26,7 +27,6 @@ class Sound{
 
     uint16_t _volume;
     uint16_t _bandAmp[AVG_BANDS_COUNT];
-    uint16_t maxVolume;
     uint16_t maxBandAmp[AVG_BANDS_COUNT];
 
 };

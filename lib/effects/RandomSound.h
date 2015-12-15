@@ -1,23 +1,25 @@
-#ifndef SNAKE_H
-#define SNAKE_H
+#ifndef RANDOM_SOUND_H
+#define RANDOM_SOUND_H
 
 #include "Adafruit_NeoPixel.h"
 #include "EffectData.h"
 
-class Snake : public Effect{
+class RandomSound : public Effect{
 
   public:
-    Snake();
+    RandomSound();
     void run(Adafruit_NeoPixel *strip, EffectData *data);
     void randomize();
 
   private:
-    uint8_t pixel[3];
     unsigned long lastStep;
-    int8_t hueSpeed;
-    void updatePixels();
+    uint8_t onPixel;
+    uint16_t brightness[4];
+    uint16_t maxHueStep;
 
+    void updatePixels();
 };
+
 
 
 #endif

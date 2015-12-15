@@ -7,6 +7,7 @@
 struct EffectData{
   uint16_t tempo; // Period between taps
   uint8_t volume;
+  uint8_t maxVolume;
   uint8_t startIdx;
   uint8_t bandAmp[4];
   uint16_t hue[4];
