@@ -15,7 +15,7 @@ class RandomSound : public Effect{
     unsigned long lastStep;
     uint8_t onPixel;
     uint16_t brightness[4];
-    uint16_t maxHueStep;
+    uint8_t hueStep;
 
     void updatePixels();
 };

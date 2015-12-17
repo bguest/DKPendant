@@ -7,7 +7,7 @@ RandomSound::RandomSound(){
 
 void RandomSound::randomize(){
   onPixel = random(4);
-  maxHueStep = random(0x0FFF);
+  hueStep = random(0xFF);
   for(uint8_t i=0; i< LED_COUNT; i++){
     brightness[i] = random(0xFFFF);
   }
@@ -16,19 +16,17 @@ void RandomSound::randomize(){
 void RandomSound::run(Adafruit_NeoPixel *strip, EffectData *data){
 
   unsigned long currMillis = millis();
-  if( data->volume  >= data->maxVolume ){
+  if( data->volume  >= 0.7*data->maxVolume ){
   //if( currMillis - lastStep > data->tempo ){
     this->updatePixels();
-    data->hue[onPixel] += random(maxHueStep);
+    lastStep = currMillis;
   }
   this-> off(strip);
-
-  uint16_t diff = currMillis - lastStep;
-  lastStep = currMillis;
+  data->hue[onPixel] += data->volume*4;
 
   for(uint8_t i=0; i<LED_COUNT; i++){
     uint8_t hue8 = data->hue[i] >> 8;
-    uint16_t delta = 0xFFFF*diff/data->tempo;
+    uint16_t delta = 0xFFFF/max(data->tempo, 150);
     if(i == onPixel){
       if(delta < 0xFFFF - brightness[i]){
         brightness[i] += delta;
@@ -36,13 +34,13 @@ void RandomSound::run(Adafruit_NeoPixel *strip, EffectData *data){
         brightness[i] = 0xFFFF;
       }
     }else{
-      if(delta < brightness[i]){
-        brightness[i] -= delta;
+      if(delta/2 < brightness[i]){
+        brightness[i] -= 0.4*delta;
       }else{
         brightness[i] = 0x0000;
       }
     }
-    uint32_t color = this -> wheel(hue8, brightness[i]);
+    uint32_t color = this -> wheel(hue8, brightness[i] >> 8);
     strip -> setPixelColor(i, color);
   }
 }
