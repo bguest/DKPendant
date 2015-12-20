@@ -19,7 +19,7 @@ void Snake::run(Adafruit_NeoPixel *strip, EffectData *data){
     lastStep = currMillis;
     this ->updatePixels();
     uint8_t p = pixel[0];
-    data->hue[p] = data->hue[pixel[1]]/2 + data->hue[p]/ + 0xFF;
+    data->hue[p] = data->hue[pixel[1]]/2 + data->hue[p]/2 + 8*data->rawVolume;
   }
   this-> off(strip);
 

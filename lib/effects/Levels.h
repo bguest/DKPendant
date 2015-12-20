@@ -6,7 +6,12 @@
 
 class Levels : public Effect{
   public:
+    Levels();
+    void randomize();
     void run(Adafruit_NeoPixel *strip, EffectData *data);
+
+  private:
+    int8_t hueSpeed[LED_COUNT];
 };
 #endif
 

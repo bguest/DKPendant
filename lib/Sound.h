@@ -19,6 +19,7 @@ class Sound{
     uint8_t volume();
     uint8_t bandAmp(uint8_t bandNumber);
     uint16_t maxVolume;
+    uint16_t rawVolume;
 
   private:
     char im[SAMPLES_COUNT];

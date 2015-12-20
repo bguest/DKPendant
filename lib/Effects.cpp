@@ -59,6 +59,7 @@ void Effects::setSoundInfo(Sound *sound){
     data.bandAmp[i] = data.bandAmp[i]/2 + sound->bandAmp(i)/2;
   }
   data.maxVolume = sound->maxVolume;
+  data.rawVolume = sound->rawVolume;
 }
 
 void Effects::setTempo(uint16_t aTempo){

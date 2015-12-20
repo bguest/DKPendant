@@ -36,6 +36,7 @@ void Sound::run(){
     data[i] = val / 2 - 128;
     im[i] = 0;
   }
+  rawVolume = val;
 
   //this could be done with the fix_fftr function without the im array.
   fix_fft(data,im,BANDS_COUNT,0);

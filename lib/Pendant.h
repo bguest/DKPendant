@@ -8,8 +8,8 @@
 #include "Effects.h"
 #include "IRremote.h"
 
-#define PENDANT_ID 0x55
-//#define PENDANT_ID 0xAA
+//#define PENDANT_ID 0x55
+#define PENDANT_ID 0xAA
 //#define PENDANT_ID 0x7F
 #define IR_PIN 5
 
